@@ -82,10 +82,11 @@ function WelcomeSection() {
         <BottomImage src={standing18} />
       </ImageSection>
       <TextSection>
-        <Title>Vitae velit faucibus fusce semper auctor lectus.</Title>
+        <Title>Learn about your own personality in just one click.</Title>
         <p>
-          Gravida dui porttitor mauris convallis turpis tincidunt turpis
-          suspendisse massa.
+          Our advanced facial recognition software is trained using machine
+          learning to recognize different personalities just from facial
+          expressions alone.
         </p>
         <ArrowButton to="/face" />
       </TextSection>
