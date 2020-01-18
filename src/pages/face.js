@@ -35,7 +35,7 @@ function useCameraViewState() {
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
 
-  // Setup HTML5 Camera, runs 
+  // Setup HTML5 Camera, runs
   useEffect(() => {
     async function setupCamera() {
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -131,7 +131,7 @@ function useCameraViewState() {
 function CameraView() {
   const cameraViewState = useCameraViewState();
   const [fetchedAzure, setFetchedAzure] = useState(false);
-  const { face } = cameraViewState;  
+  const { face } = cameraViewState;
 
   async function azure() {
     console.log("Fetching images from azure");
@@ -154,14 +154,14 @@ function CameraView() {
     // for initial fetch
     if (!fetchedAzure && face !== null && face !== undefined) {
       azure();
-      setFetchedAzure(true);      
+      setFetchedAzure(true);
     }
 
     // faceapi.js sets not detected faces to undefined
     if (face === undefined) {
       setFetchedAzure(false);
     }
-  }, [fetchedAzure, setFetchedAzure, face])
+  }, [fetchedAzure, setFetchedAzure, face]);
 
   return (
     <CameraViewWrapper>

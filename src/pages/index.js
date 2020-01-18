@@ -7,6 +7,7 @@ import Image from "../components/image";
 import Layout from "../components/layout";
 import Testimonial from "../landing/testimonial";
 import TestimonialSection from "../landing/testimonial-section";
+import FAQ from "../components/faq";
 
 const StyledLanding = styled.div``;
 
@@ -26,6 +27,8 @@ const IndexPage = () => (
         <Testimonial author="Ivan Tan the Weeb">Yes test yayaya</Testimonial>
         <Testimonial author="Ivan Tan the Weeb">Yes test yayaya</Testimonial>
       </TestimonialSection>
+
+      <FAQ />
     </StyledLanding>
   </Layout>
 );
