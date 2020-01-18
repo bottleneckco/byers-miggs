@@ -90,7 +90,21 @@ function useCameraViewState() {
     if (!videoRef.current) {
       return;
     }
-    const loadedCallback = () => setIsVideoReady(true);
+    // const loadedCallback = () => setIsVideoReady(true);
+    const loadedCallback = () => {
+      setIsVideoReady(true);
+      // console.log("fuck");
+
+      // captureImage()
+      //   .then(imgData => {
+      //     console.log("captured img");
+      //     return azureCognitiveVision(imgData);
+      //   })
+      //   .then(faces => {
+      //     console.log(faces);
+      //     console.log(faces.length);
+      //   });
+    };
 
     videoRef.current.addEventListener("loadeddata", loadedCallback);
     return () =>
@@ -185,10 +199,11 @@ function CameraView() {
     const imageData = await cameraViewState.captureImage();
 
     const faces = await azureCognitiveVision(imageData);
-    if (faces === undefined) {
-      // For some reason, faces will sometimes be undefined but await doesn't stop it.
-      setTimeout(() => {}, 1000);
-    }
+    console.log(faces);
+    // if (faces === undefined) {
+    //   // For some reason, faces will sometimes be undefined but await doesn't stop it.
+    //   setTimeout(() => {}, 1000);
+    // }
 
     const { faceId, faceLandmarks, faceRectangle, faceAttributes } = faces[0];
     cameraViewState.stream.getTracks().forEach(track => track.stop());
@@ -199,22 +214,27 @@ function CameraView() {
   }
 
   // try to send to azure automatically
-  useEffect(() => {
-    // for initial fetch
-    if (!isFetching && face !== null && face !== undefined) {
-      azure();
-      setIsFetching(true);
+  // useEffect(() => {
+  //   // for initial fetch
+  //   if (!isFetching && face !== null && face !== undefined) {
+  //     azure();
+  //     setIsFetching(true);
+  //   }
+  // }, [face, isFetching, setIsFetching]);
+
+  const renderWebCamMsg = () => {
+    if (cameraViewState.isVideoReady) {
+      return cameraViewState.face ? "" : "Move into the webcam view";
     }
-  }, [face, isFetching, setIsFetching]);
+    return "";
+  };
 
   return (
     <CameraViewWrapper>
       {!cameraViewState.isVideoReady && <Spinner />}
       <Video ref={cameraViewState.videoRef} />
       <Canvas ref={cameraViewState.canvasRef} />
-      <span>
-        {cameraViewState.face ? "" : "Please move into the view of the webcam"}
-      </span>
+      <span>{renderWebCamMsg()}</span>
       <p>{camViewErr !== null ? camViewErr : ""}</p>
       <p>
         {isFetching
