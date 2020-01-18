@@ -3,68 +3,61 @@ import { Link } from "gatsby";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const IconWrapper = styled.div`
-  display: inline-block;
-  padding: 5px 0px 0px 10px;
-  transition: transform 40ms ease-in-out;
-`;
-
 const Wrapper = styled(Link)`
-  display: flex;
-  align-items: center;
-  outline: 1px solid black;
-  text-decoration: none;
-  font-weight: 700;
-  background-color: transparent;
+  display: inline-block;
   border: 1px solid ${props => props.theme.black};
-  padding: 18px 30px;
-  transition: background-color 20ms;
+  padding: 1rem 2rem;
+  cursor: pointer;
 
   &:hover {
-    cursor: pointer;
-    color: ${props => props.theme.white};
-    background-color: ${props => props.theme.orange};
-
-    ${IconWrapper} {
+    svg {
       transform: translateX(10%);
     }
-
-    svg {
-      path {
-        stroke: ${props => props.theme.white};
-      }
-    }
   }
+
+  h4 {
+    display: inline-block;
+    margin: 0;
+    vertical-align: middle;
+  }
+`;
+
+const Svg = styled.svg`
+  padding-left: 10px;
+  vertical-align: middle;
+  transition: transform 200ms ease-out;
 `;
 
 const ArrowButton = ({ to }) => {
   return (
     <Wrapper to={to}>
-      Take the Test
-      <IconWrapper>
-        <svg
-          width="41"
-          height="22"
-          viewBox="0 0 41 22"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M1 10.7914L40 10.7914"
-            stroke="black"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M30 1L40 10.7915L30 20.5829"
-            stroke="black"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </IconWrapper>
+      <h4>Take the Test</h4>
+      <Svg
+        width="40"
+        height="18"
+        viewBox="0 0 41 22"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M1 10.7914L40 10.7914"
+          stroke="black"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M30 1L40 10.7915L30 20.5829"
+          stroke="black"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
     </Wrapper>
   );
+};
+
+ArrowButton.propTypes = {
+  to: PropTypes.string.isRequired,
 };
 
 export default ArrowButton;

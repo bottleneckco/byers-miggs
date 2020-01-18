@@ -10,6 +10,7 @@ const StyledSection = styled.div`
   align-items: center;
   padding: 3rem 0;
   text-align: center;
+  border-top: 1px solid ${props => props.theme.black};
 `;
 
 const Counter = styled.h1`
