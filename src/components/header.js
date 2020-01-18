@@ -94,7 +94,6 @@ const VCenteredLink = styled(Link)`
   height: 100%;
 `;
 
-
 const Header = ({ siteTitle }) => {
   return (
     <StyledHeader>
@@ -107,7 +106,7 @@ const Header = ({ siteTitle }) => {
       <StyledNav>
         <Link to="/page-2/">Personality Types</Link>
         <Link to="/">Testimonials</Link>
-        <Link to="/">FAQ</Link>
+        <Link to="/faq">FAQ</Link>
       </StyledNav>
 
       <StyledCTA>
@@ -117,7 +116,7 @@ const Header = ({ siteTitle }) => {
       </StyledCTA>
     </StyledHeader>
   );
-}
+};
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
