@@ -6,7 +6,9 @@ import { useState } from "react";
 const BOX_LINE_COLOR = "darkcyan";
 const BOX_LINE_WIDTH = 2;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div``;
+
+const CameraViewWrapper = styled.div`
   display: grid;
 `;
 
@@ -18,7 +20,7 @@ const Canvas = styled.canvas`
   grid-area: 1/1;
 `;
 
-function FacePage() {
+function useCameraViewState() {
   const [face, setFace] = useState(null);
   const [isVideoReady, setIsVideoReady] = useState(false);
 
@@ -88,12 +90,32 @@ function FacePage() {
     return () => window.cancelAnimationFrame(handle);
   }, [videoRef, isVideoReady]);
 
+  return {
+    face,
+    setFace,
+    isVideoReady,
+    setIsVideoReady,
+    canvasRef,
+    videoRef,
+  };
+}
+
+function CameraView() {
+  const cameraViewState = useCameraViewState();
+  return (
+    <CameraViewWrapper>
+      <Video ref={cameraViewState.videoRef} />
+      <Canvas ref={cameraViewState.canvasRef} />
+      <span>{cameraViewState.face ? "GOT PEOPLE" : "NO PEOPLE"}</span>
+    </CameraViewWrapper>
+  );
+}
+
+function FacePage() {
   return (
     <Wrapper>
       <h1>THE FACE PAGE</h1>
-      <Video ref={videoRef} />
-      <Canvas ref={canvasRef} />
-      <span>{face ? "GOT PEOPLE" : "NO PEOPLE"}</span>
+      <CameraView />
     </Wrapper>
   );
 }
