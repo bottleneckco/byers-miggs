@@ -32,12 +32,10 @@ const testData = {
 };
 
 function Results({ location }) {
-  // run on default componentDidMount
-  // location.state = data;
   const [luckyNum, setLuckyNum] = useState(-1);
 
   useEffect(() => {
-    // Remove this later
+    // run on default componentDidMount
     let data = testData;
     // console.log(location);
     if (location.state !== null) {
@@ -45,6 +43,7 @@ function Results({ location }) {
     }
 
     const obj = { age: data.age, gender: data.gender, hair: data.hair };
+    // console.log(obj);
     let rng = seedrandom(JSON.stringify(obj));
     const num = parseInt((rng() * 1000) % 16);
     // console.log(num);

@@ -150,22 +150,21 @@ function useCameraViewState() {
 
 function CameraView() {
   const cameraViewState = useCameraViewState();
-  const [fetchedAzure, setFetchedAzure] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
+
   const { face } = cameraViewState;
 
   async function azure() {
     console.log("Fetching images from azure");
     const imageData = await cameraViewState.captureImage();
-    // console.log(imageData);
 
     const faces = await azureCognitiveVision(imageData);
     if (faces === undefined) {
       // For some reason, faces will sometimes be undefined but await doesn't stop it.
       setTimeout(() => {}, 1000);
     }
-    const { faceId, faceLandmarks, faceRectangle, faceAttributes } = faces[0];
-    console.log(faceAttributes);
 
+    const { faceId, faceLandmarks, faceRectangle, faceAttributes } = faces[0];
     cameraViewState.stream.getTracks().forEach(track => track.stop());
 
     navigate("/results", {
@@ -176,16 +175,11 @@ function CameraView() {
   // try to send to azure automatically
   useEffect(() => {
     // for initial fetch
-    if (!fetchedAzure && face !== null && face !== undefined) {
+    if (!isFetching && face !== null && face !== undefined) {
       azure();
-      setFetchedAzure(true);
+      setIsFetching(true);
     }
-
-    // faceapi.js sets not detected faces to undefined
-    if (face === undefined) {
-      setFetchedAzure(false);
-    }
-  }, [fetchedAzure, setFetchedAzure, face]);
+  }, [face, isFetching, setIsFetching]);
 
   return (
     <CameraViewWrapper>
