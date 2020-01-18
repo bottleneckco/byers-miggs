@@ -69,7 +69,6 @@ function useCameraViewState() {
         videoRef.current.play();
         setStream(stream);
       } catch (err) {
-        console.log(err.message);
         if (err.message === "Permission denied") {
           setCamViewErr(
             "The app requires permission to the camera for it to run. Please allow it and refresh."
@@ -90,21 +89,7 @@ function useCameraViewState() {
     if (!videoRef.current) {
       return;
     }
-    // const loadedCallback = () => setIsVideoReady(true);
-    const loadedCallback = () => {
-      setIsVideoReady(true);
-      // console.log("fuck");
-
-      // captureImage()
-      //   .then(imgData => {
-      //     console.log("captured img");
-      //     return azureCognitiveVision(imgData);
-      //   })
-      //   .then(faces => {
-      //     console.log(faces);
-      //     console.log(faces.length);
-      //   });
-    };
+    const loadedCallback = () => setIsVideoReady(true);
 
     videoRef.current.addEventListener("loadeddata", loadedCallback);
     return () =>
@@ -192,20 +177,23 @@ function CameraView() {
   const { face, camViewErr } = cameraViewState;
   const [isFetching, setIsFetching] = useState(false);
 
-  // const { face } = cameraViewState;
-
   async function azure() {
     console.log("Fetching images from azure");
-    const imageData = await cameraViewState.captureImage();
+    let azureRes = [];
 
-    const faces = await azureCognitiveVision(imageData);
-    console.log(faces);
-    // if (faces === undefined) {
-    //   // For some reason, faces will sometimes be undefined but await doesn't stop it.
-    //   setTimeout(() => {}, 1000);
-    // }
+    while (azureRes.length === 0) {
+      if (face !== null && face !== undefined) {
+        const imageData = await cameraViewState.captureImage();
+        azureRes = await azureCognitiveVision(imageData);
+      }
+    }
 
-    const { faceId, faceLandmarks, faceRectangle, faceAttributes } = faces[0];
+    const {
+      faceId,
+      faceLandmarks,
+      faceRectangle,
+      faceAttributes,
+    } = azureRes[0];
     cameraViewState.stream.getTracks().forEach(track => track.stop());
 
     navigate("/results", {
@@ -214,13 +202,13 @@ function CameraView() {
   }
 
   // try to send to azure automatically
-  // useEffect(() => {
-  //   // for initial fetch
-  //   if (!isFetching && face !== null && face !== undefined) {
-  //     azure();
-  //     setIsFetching(true);
-  //   }
-  // }, [face, isFetching, setIsFetching]);
+  useEffect(() => {
+    // for initial fetch
+    if (!isFetching && face !== null && face !== undefined) {
+      azure();
+      setIsFetching(true);
+    }
+  }, [face, isFetching, setIsFetching]);
 
   const renderWebCamMsg = () => {
     if (cameraViewState.isVideoReady) {
