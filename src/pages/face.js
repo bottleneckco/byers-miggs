@@ -42,6 +42,7 @@ function useCameraViewState() {
   const [face, setFace] = useState(null);
   const [isVideoReady, setIsVideoReady] = useState(false);
   const [stream, setStream] = useState(null);
+  const [camViewErr, setCamViewErr] = useState(null);
 
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
@@ -51,7 +52,7 @@ function useCameraViewState() {
     async function loadFaceApiModels() {
       await faceApi.nets.tinyFaceDetector.loadFromUri("/models");
       await faceApi.nets.faceExpressionNet.loadFromUri("/models");
-      console.log("Loaded");
+      console.log("Loaded models");
     }
     loadFaceApiModels();
   }, []);
@@ -59,14 +60,28 @@ function useCameraViewState() {
   // Setup HTML5 Camera, runs
   useEffect(() => {
     async function setupCamera() {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: true,
-      });
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+        });
 
-      videoRef.current.srcObject = stream;
-      videoRef.current.play();
-      setStream(stream);
+        videoRef.current.srcObject = stream;
+        videoRef.current.play();
+        setStream(stream);
+      } catch (err) {
+        console.log(err.message);
+        if (err.message === "Permission denied") {
+          setCamViewErr(
+            "The app requires permission to the camera for it to run. Please allow it and refresh."
+          );
+        } else {
+          setCamViewErr(
+            "The app went bonkers. You can refresh the page or wait it out."
+          );
+        }
+      }
     }
+
     setupCamera();
   }, []);
 
@@ -153,14 +168,17 @@ function useCameraViewState() {
     videoRef,
     captureImage,
     stream,
+    camViewErr,
   };
 }
 
 function CameraView() {
+  // attr from useCameraViewState that are states are also states here
   const cameraViewState = useCameraViewState();
+  const { face, camViewErr } = cameraViewState;
   const [isFetching, setIsFetching] = useState(false);
 
-  const { face } = cameraViewState;
+  // const { face } = cameraViewState;
 
   async function azure() {
     console.log("Fetching images from azure");
@@ -195,6 +213,7 @@ function CameraView() {
       <Video ref={cameraViewState.videoRef} />
       <Canvas ref={cameraViewState.canvasRef} />
       <span>{cameraViewState.face ? "GOT PEOPLE" : "NO PEOPLE"}</span>
+      <p>{camViewErr !== null ? camViewErr : ""}</p>
       {/* <button onClick={azure}>Send</button> */}
     </CameraViewWrapper>
   );
