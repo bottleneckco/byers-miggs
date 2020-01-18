@@ -17,7 +17,7 @@ const IndexPage = () => (
     <SEO title="Home" />
     <StyledLanding>
       <WelcomeSection />
-      <TestimonialSection>
+      <TestimonialSection id="testimonial-section">
         <Testimonial
           author="Ivan Tan &mdash; &ldquo;the Weeb&rdquo;"
           bgColor="blue"
@@ -41,7 +41,7 @@ const IndexPage = () => (
         </Testimonial>
       </TestimonialSection>
 
-      <FAQ />
+      <FAQ id="faq" />
     </StyledLanding>
   </Layout>
 );

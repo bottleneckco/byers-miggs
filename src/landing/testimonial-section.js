@@ -40,7 +40,7 @@ const TestimonialList = styled.div`
   }
 `;
 
-function TestimonialSection({ children }) {
+function TestimonialSection({ id, children }) {
   return (
     <StyledSection>
       <CountUp delay={0} end={999999999} separator=",">
@@ -56,7 +56,12 @@ function TestimonialSection({ children }) {
   );
 }
 
+TestimonialSection.defaultProps = {
+  id: "",
+};
+
 TestimonialSection.propTypes = {
+  id: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 

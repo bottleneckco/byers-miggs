@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
     -webkit-text-size-adjust: 100%;
     background-color: ${props => props.theme.white};
     color: ${props => props.theme.black};
+    scroll-behavior: smooth;
   }
 
   body {
