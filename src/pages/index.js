@@ -23,9 +23,27 @@ const IndexPage = () => (
       </div>
       <Link to="/page-2/">Go to page 2</Link>
       <TestimonialSection>
-        <Testimonial author="Ivan Tan the Weeb">Yes test yayaya</Testimonial>
-        <Testimonial author="Ivan Tan the Weeb">Yes test yayaya</Testimonial>
-        <Testimonial author="Ivan Tan the Weeb">Yes test yayaya</Testimonial>
+        <Testimonial
+          author="Ivan Tan &mdash; &ldquo;the Weeb&rdquo;"
+          bgColor="blue"
+        >
+          “Aliquam commodo cras molestie tristique libero. Justo, in et donec
+          orci viverra.”
+        </Testimonial>
+        <Testimonial
+          author="Ivan Tan &mdash; &ldquo;the Weeb&rdquo;"
+          bgColor="orange"
+        >
+          “Aliquam commodo cras molestie tristique libero. Justo, in et donec
+          orci viverra.”
+        </Testimonial>
+        <Testimonial
+          author="Ivan Tan &mdash; &ldquo;the Weeb&rdquo;"
+          bgColor="pink"
+        >
+          “Aliquam commodo cras molestie tristique libero. Justo, in et donec
+          orci viverra.”
+        </Testimonial>
       </TestimonialSection>
 
       <FAQ />

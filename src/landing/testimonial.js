@@ -4,35 +4,43 @@ import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  max-width: 300px;
+  padding: 1rem;
   border: 1px solid ${props => props.theme.black};
-  padding: 40px;
+  justify-self: center;
+  text-align: center;
 `;
 
 const Quote = styled.blockquote`
-  display: inline-block;
-  padding: 0;
   margin: 0;
-  font-size: 25px;
 `;
 
-const AuthorImage = styled.img`
+const AuthorImage = styled.div`
+  position: relative;
+  overflow: hidden;
+  margin: 1rem auto;
+  width: 5rem;
+  height: 5rem;
   border-radius: 100%;
-  width: 100px;
-  height: 100px;
-  background-color: ${props => props.bgColor};
-  margin: 20px 0;
+  background-color: ${props => props.theme[props.bgColor]};
+
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8rem;
+    height: 8rem;
+  }
 `;
 
-const Author = styled.span`
+const Author = styled.h6`
+  margin: 0;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  font-weight: 900;
-  font-size: 20px;
 `;
 
-function Testimonial({ author, children }) {
+function Testimonial({ author, bgColor, children }) {
   const { allFile } = useStaticQuery(graphql`
     query {
       allFile(filter: { relativeDirectory: { eq: "heads" } }) {
@@ -51,9 +59,11 @@ function Testimonial({ author, children }) {
   return (
     <Wrapper>
       <Quote>{children}</Quote>
-      <AuthorImage
-        src={edges[Math.floor(Math.random() * edges.length)].node.publicURL}
-      />
+      <AuthorImage bgColor={bgColor}>
+        <img
+          src={edges[Math.floor(Math.random() * edges.length)].node.publicURL}
+        />
+      </AuthorImage>
       <Author>{author}</Author>
     </Wrapper>
   );
@@ -61,6 +71,7 @@ function Testimonial({ author, children }) {
 
 Testimonial.propTypes = {
   author: PropTypes.string.isRequired,
+  bgColor: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 };
 

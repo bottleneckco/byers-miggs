@@ -17,6 +17,13 @@ const Wrapper = styled.div`
       "faq faq"
       / 35% auto;
   }
+
+  @media (max-width: ${props => props.theme.breakSmall}) {
+    grid-template:
+      "hero title"
+      "faq faq"
+      / 1fr auto;
+  }
 `;
 
 const HeroImageWrapper = styled.div`
@@ -40,6 +47,10 @@ const Title = styled.h1`
   grid-area: title;
   margin: 0;
   padding: 2rem;
+
+  @media (max-width: ${props => props.theme.breakMedium}) {
+    padding: 1rem;
+  }
 `;
 
 const FAQWrapper = styled.div`
