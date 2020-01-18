@@ -159,6 +159,10 @@ function CameraView() {
     // console.log(imageData);
 
     const faces = await azureCognitiveVision(imageData);
+    if (faces === undefined) {
+      // For some reason, faces will sometimes be undefined but await doesn't stop it.
+      setTimeout(() => {}, 1000);
+    }
     const { faceId, faceLandmarks, faceRectangle, faceAttributes } = faces[0];
     console.log(faceAttributes);
 
