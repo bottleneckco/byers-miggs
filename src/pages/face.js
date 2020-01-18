@@ -35,7 +35,7 @@ function useCameraViewState() {
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
 
-  // Setup HTML5 Camera
+  // Setup HTML5 Camera, runs 
   useEffect(() => {
     async function setupCamera() {
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -106,7 +106,7 @@ function useCameraViewState() {
   }, [videoRef, isVideoReady]);
 
   async function captureImage() {
-    var canvas = document.createElement("canvas");
+    const canvas = document.createElement("canvas");
     canvas.width = videoRef.current.videoWidth;
     canvas.height = videoRef.current.videoHeight;
 
@@ -128,19 +128,13 @@ function useCameraViewState() {
   };
 }
 
-// function initStage() {
-//   const [stage] = useState(1);
-
-//   return {
-//     stage,
-//   };
-// }
-
 function CameraView() {
   const cameraViewState = useCameraViewState();
-  // const [stage, setStage] = useState("abcd");
+  const [fetchedAzure, setFetchedAzure] = useState(false);
+  const { face } = cameraViewState;  
 
   async function azure() {
+    console.log("Fetching images from azure");
     const imageData = await cameraViewState.captureImage();
     console.log(imageData);
     const faces = await azureCognitiveVision(imageData);
@@ -155,12 +149,26 @@ function CameraView() {
     }
   }
 
+  // try to send to azure automatically
+  useEffect(() => {
+    // for initial fetch
+    if (!fetchedAzure && face !== null && face !== undefined) {
+      azure();
+      setFetchedAzure(true);      
+    }
+
+    // faceapi.js sets not detected faces to undefined
+    if (face === undefined) {
+      setFetchedAzure(false);
+    }
+  }, [fetchedAzure, setFetchedAzure, face])
+
   return (
     <CameraViewWrapper>
       <Video ref={cameraViewState.videoRef} />
       <Canvas ref={cameraViewState.canvasRef} />
       <span>{cameraViewState.face ? "GOT PEOPLE" : "NO PEOPLE"}</span>
-      <button onClick={azure}>Send</button>
+      {/* <button onClick={azure}>Send</button> */}
     </CameraViewWrapper>
   );
 }
