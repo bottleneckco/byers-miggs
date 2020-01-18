@@ -1,0 +1,12 @@
+{
+  "extends": ["plugin:react/recommended", "plugin:prettier/recommended"],
+  "plugins": ["prettier", "react-hooks"],
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "prettier/prettier": "error"
+  }
+}
