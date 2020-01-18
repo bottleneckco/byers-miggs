@@ -47,14 +47,13 @@ function Testimonial({ author, children }) {
     }
   `);
   const { edges } = allFile;
+  const chosenImage = edges[Math.floor(Math.random() * edges.length)].node;
 
   return (
     <Wrapper>
       <Quote>{children}</Quote>
-      <AuthorImage
-        src={edges[Math.floor(Math.random() * edges.length)].node.publicURL}
-      />
-      <Author>{author}</Author>
+      <AuthorImage src={chosenImage.publicURL} />
+      <Author>{chosenImage.name}</Author>
     </Wrapper>
   );
 }
