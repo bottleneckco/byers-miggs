@@ -4,6 +4,8 @@ import * as faceApi from "face-api.js";
 import { useState } from "react";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import azureCognitiveVision from "../utils/azure-cognitive-vision";
+import getCanvasBlob from "../utils/get-canvas-blob";
 
 const BOX_LINE_COLOR = "darkcyan";
 const BOX_LINE_WIDTH = 2;
@@ -102,6 +104,18 @@ function useCameraViewState() {
     return () => window.cancelAnimationFrame(handle);
   }, [videoRef, isVideoReady]);
 
+  async function captureImage() {
+    var canvas = document.createElement("canvas");
+    canvas.width = videoRef.current.videoWidth;
+    canvas.height = videoRef.current.videoHeight;
+
+    canvas
+      .getContext("2d")
+      .drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
+
+    return getCanvasBlob(canvas);
+  }
+
   return {
     face,
     setFace,
@@ -109,16 +123,34 @@ function useCameraViewState() {
     setIsVideoReady,
     canvasRef,
     videoRef,
+    captureImage,
   };
 }
 
 function CameraView() {
   const cameraViewState = useCameraViewState();
+
+  async function azure() {
+    const imageData = await cameraViewState.captureImage();
+    console.log(imageData);
+    const faces = await azureCognitiveVision(imageData);
+    for (const {
+      faceId,
+      faceLandmarks,
+      faceRectangle,
+      faceAttributes,
+    } of faces) {
+      console.log(faceLandmarks);
+      console.log(faceAttributes);
+    }
+  }
+
   return (
     <CameraViewWrapper>
       <Video ref={cameraViewState.videoRef} />
       <Canvas ref={cameraViewState.canvasRef} />
       <span>{cameraViewState.face ? "GOT PEOPLE" : "NO PEOPLE"}</span>
+      <button onClick={azure}>Send</button>
     </CameraViewWrapper>
   );
 }

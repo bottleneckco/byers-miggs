@@ -5,6 +5,8 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@azure/cognitiveservices-face": "^4.0.0",
+    "@azure/ms-rest-azure-js": "^2.0.1",
     "babel-plugin-styled-components": "^1.10.6",
     "face-api.js": "^0.22.0",
     "gatsby": "^2.18.12",
