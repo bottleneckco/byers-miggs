@@ -12,10 +12,18 @@ import getCanvasBlob from "../utils/get-canvas-blob";
 const BOX_LINE_COLOR = "darkcyan";
 const BOX_LINE_WIDTH = 2;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Title = styled.h1``;
 
 const CameraViewWrapper = styled.div`
   display: grid;
+  align-items: center;
+  justify-items: center;
 `;
 
 const Video = styled.video`
@@ -197,7 +205,7 @@ function FacePage() {
     <Layout>
       <SEO title="Face" />
       <Wrapper>
-        <h1>THE FACE PAGE</h1>
+        <Title>Sit risus urna, suspendisse.</Title>
         <CameraView />
       </Wrapper>
     </Layout>
