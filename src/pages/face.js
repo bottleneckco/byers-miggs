@@ -6,6 +6,7 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import azureCognitiveVision from "../utils/azure-cognitive-vision";
 import getCanvasBlob from "../utils/get-canvas-blob";
+import Spinner from "../components/spinner";
 
 const BOX_LINE_COLOR = "darkcyan";
 const BOX_LINE_WIDTH = 2;
@@ -35,6 +36,18 @@ function useCameraViewState() {
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
 
+  // Video element handlers
+  useEffect(() => {
+    if (!videoRef.current) {
+      return;
+    }
+    const loadedCallback = () => setIsVideoReady(true);
+
+    videoRef.current.addEventListener("loadeddata", loadedCallback);
+    return () =>
+      videoRef.current.removeEventListener("loadeddata", loadedCallback);
+  }, [videoRef]);
+
   // Setup HTML5 Camera, runs
   useEffect(() => {
     async function setupCamera() {
@@ -44,7 +57,7 @@ function useCameraViewState() {
 
       videoRef.current.srcObject = stream;
       videoRef.current.play();
-      setIsVideoReady(true);
+      //      setIsVideoReady(true);
     }
     setupCamera();
   }, []);
@@ -165,6 +178,7 @@ function CameraView() {
 
   return (
     <CameraViewWrapper>
+      {!cameraViewState.isVideoReady && <Spinner />}
       <Video ref={cameraViewState.videoRef} />
       <Canvas ref={cameraViewState.canvasRef} />
       <span>{cameraViewState.face ? "GOT PEOPLE" : "NO PEOPLE"}</span>
