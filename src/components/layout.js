@@ -8,7 +8,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from "styled-components";
 
 import Header from "./header";
 import theme from "../styles/theme";
@@ -32,9 +32,7 @@ const Layout = ({ children }) => {
         <Header siteTitle={data.site.siteMetadata.title} />
         <div>
           <main>{children}</main>
-          <footer>
-            © {new Date().getFullYear()}
-          </footer>
+          <footer>© {new Date().getFullYear()}</footer>
         </div>
       </ThemeProvider>
     </>

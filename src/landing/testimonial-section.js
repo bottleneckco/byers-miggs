@@ -3,37 +3,44 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import ArrowButton from "../components/arrowButton";
 
-const Wrapper = styled.div`
+const StyledSection = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 3rem 0;
+  text-align: center;
 `;
 
 const Counter = styled.h1`
   color: ${props => props.theme.grey};
   margin: 0;
-  padding: 0;
 `;
 
 const CounterText = styled(Counter)`
   color: ${props => props.theme.black};
 `;
 
-const Tagline = styled.span`
+const Tagline = styled.p`
   color: ${props => props.theme.black};
-  margin-top: 20px;
+  margin: 1rem 0 0;
+  text-align: center;
 `;
 
 const TestimonialList = styled.div`
   display: grid;
   grid-auto-flow: column;
-  column-gap: 16px;
-  margin: 60px 0;
+  grid-gap: 1rem;
+  margin: 2rem auto;
+  max-width: 90%;
+
+  @media (max-width: ${props => props.theme.breakMedium}) {
+    grid-auto-flow: row;
+  }
 `;
 
 function TestimonialSection({ children }) {
   return (
-    <Wrapper>
+    <StyledSection>
       <Counter>999,999,999</Counter>
       <CounterText>tests taken so far</CounterText>
       <Tagline>
@@ -41,7 +48,7 @@ function TestimonialSection({ children }) {
       </Tagline>
       <TestimonialList>{children}</TestimonialList>
       <ArrowButton to="/face" />
-    </Wrapper>
+    </StyledSection>
   );
 }
 
