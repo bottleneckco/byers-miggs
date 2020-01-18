@@ -3,14 +3,21 @@ import { Link } from "gatsby";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const ArrowButton = () => {
+const ArrowButton = ({ to }) => {
   const Button = styled.button`
+    display: flex;
+    align-items: center;
     outline: 1px solid black;
+    text-decoration: none;
+    font-weight: 700;
+    background: none;
+    border: 1px solid ${props => props.theme.black};
+    padding: 18px 30px;
   `;
 
   return (
     <Link
-      to="/404/"
+      to={to}
       style={{
         textDecoration: "none",
         color: "black",
