@@ -7,6 +7,10 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: ${props => props.theme.sansSerif};
     font-size: 20px;
+
+    @media (max-width: ${props => props.theme.breakMedium}) {
+      font-size: 16px;
+    }
   }
 
   html {
@@ -68,6 +72,7 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     color: ${props => props.theme.black};
+    text-decoration: none;
   }
 `;
 
