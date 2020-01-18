@@ -1,8 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Work+Sans:300,400,600,700,800&display=swap');
-
   * {
     box-sizing: border-box;
     font-family: ${props => props.theme.sansSerif};
