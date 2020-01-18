@@ -1,12 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import * as faceApi from "face-api.js";
-import { useState } from "react";
+import { navigate } from "gatsby";
+
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import Spinner from "../components/spinner";
 import azureCognitiveVision from "../utils/azure-cognitive-vision";
 import getCanvasBlob from "../utils/get-canvas-blob";
-import Spinner from "../components/spinner";
 
 const BOX_LINE_COLOR = "darkcyan";
 const BOX_LINE_WIDTH = 2;
@@ -32,9 +33,34 @@ function getMostLikelyExpression(obj) {
 function useCameraViewState() {
   const [face, setFace] = useState(null);
   const [isVideoReady, setIsVideoReady] = useState(false);
+  const [stream, setStream] = useState(null);
 
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
+
+  // Load models
+  useEffect(() => {
+    async function loadFaceApiModels() {
+      await faceApi.nets.tinyFaceDetector.loadFromUri("/models");
+      await faceApi.nets.faceExpressionNet.loadFromUri("/models");
+      console.log("Loaded");
+    }
+    loadFaceApiModels();
+  }, []);
+
+  // Setup HTML5 Camera, runs
+  useEffect(() => {
+    async function setupCamera() {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: true,
+      });
+
+      videoRef.current.srcObject = stream;
+      videoRef.current.play();
+      setStream(stream);
+    }
+    setupCamera();
+  }, []);
 
   // Video element handlers
   useEffect(() => {
@@ -47,30 +73,6 @@ function useCameraViewState() {
     return () =>
       videoRef.current.removeEventListener("loadeddata", loadedCallback);
   }, [videoRef]);
-
-  // Setup HTML5 Camera, runs
-  useEffect(() => {
-    async function setupCamera() {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: true,
-      });
-
-      videoRef.current.srcObject = stream;
-      videoRef.current.play();
-      //      setIsVideoReady(true);
-    }
-    setupCamera();
-  }, []);
-
-  // Load models
-  useEffect(() => {
-    async function loadFaceApiModels() {
-      await faceApi.nets.tinyFaceDetector.loadFromUri("/models");
-      await faceApi.nets.faceExpressionNet.loadFromUri("/models");
-      console.log("Loaded");
-    }
-    loadFaceApiModels();
-  }, []);
 
   // Draw face
   useEffect(() => {
@@ -107,10 +109,14 @@ function useCameraViewState() {
 
   // Detect face
   useEffect(() => {
+    // This has to be done this way!!
     if (!isVideoReady || !videoRef.current) {
       return;
     }
     function callback() {
+      if (!isVideoReady || !videoRef.current) {
+        return;
+      }
       detectFaces();
       window.requestAnimationFrame(callback);
     }
@@ -138,43 +144,42 @@ function useCameraViewState() {
     canvasRef,
     videoRef,
     captureImage,
+    stream,
   };
 }
 
 function CameraView() {
   const cameraViewState = useCameraViewState();
-  const [fetchedAzure, setFetchedAzure] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
+
   const { face } = cameraViewState;
 
   async function azure() {
     console.log("Fetching images from azure");
     const imageData = await cameraViewState.captureImage();
-    console.log(imageData);
+
     const faces = await azureCognitiveVision(imageData);
-    for (const {
-      faceId,
-      faceLandmarks,
-      faceRectangle,
-      faceAttributes,
-    } of faces) {
-      console.log(faceLandmarks);
-      console.log(faceAttributes);
+    if (faces === undefined) {
+      // For some reason, faces will sometimes be undefined but await doesn't stop it.
+      setTimeout(() => {}, 1000);
     }
+
+    const { faceId, faceLandmarks, faceRectangle, faceAttributes } = faces[0];
+    cameraViewState.stream.getTracks().forEach(track => track.stop());
+
+    navigate("/results", {
+      state: { faceAttributes },
+    });
   }
 
   // try to send to azure automatically
   useEffect(() => {
     // for initial fetch
-    if (!fetchedAzure && face !== null && face !== undefined) {
+    if (!isFetching && face !== null && face !== undefined) {
       azure();
-      setFetchedAzure(true);
+      setIsFetching(true);
     }
-
-    // faceapi.js sets not detected faces to undefined
-    if (face === undefined) {
-      setFetchedAzure(false);
-    }
-  }, [fetchedAzure, setFetchedAzure, face]);
+  }, [face, isFetching, setIsFetching]);
 
   return (
     <CameraViewWrapper>
