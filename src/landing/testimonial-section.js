@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Link } from "gatsby";
+import ArrowButton from "../components/arrowButton";
 
 const Wrapper = styled.div`
   display: flex;
@@ -31,13 +31,6 @@ const TestimonialList = styled.div`
   margin: 60px 0;
 `;
 
-const StyledLink = styled(Link)`
-  border: 1px solid ${props => props.theme.black};
-  padding: 18px 30px;
-  text-decoration: none;
-  font-weight: 700;
-`;
-
 function TestimonialSection({ children }) {
   return (
     <Wrapper>
@@ -47,7 +40,7 @@ function TestimonialSection({ children }) {
         Quisque gravida eget dignissim pretium pharetra magnis in nunc.
       </Tagline>
       <TestimonialList>{children}</TestimonialList>
-      <StyledLink to="/face">Take the Test</StyledLink>
+      <ArrowButton to="/face" />
     </Wrapper>
   );
 }
