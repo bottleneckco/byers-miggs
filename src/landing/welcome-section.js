@@ -9,12 +9,10 @@ const Wrapper = styled.div`
   grid-template:
     "text image"
     / auto 40%;
-  height: 100vh;
+  min-height: 100vh;
 
   @media (max-width: ${props => props.theme.breakMedium}) {
-    grid-template:
-      "image" 50%
-      "text" auto;
+    display: block;
   }
 `;
 
@@ -24,18 +22,17 @@ const TextSection = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 5rem 3rem 0;
+  padding: 5rem 3rem;
+
+  @media (max-width: ${props => props.theme.breakSmall}) {
+    display: block;
+    padding: 2rem;
+  }
 `;
 
 const Title = styled.h1`
   margin: 0;
 `;
-
-const Tagline = styled.p`
-  margin-top: 20px;
-  margin-bottom: 30px;
-`;
-
 const ImageSection = styled.div`
   grid-area: image;
   position: relative;
@@ -52,6 +49,7 @@ const ImageSection = styled.div`
 
   @media (max-width: ${props => props.theme.breakMedium}) {
     grid-template: "image1 image2";
+    height: 25rem;
   }
 `;
 
@@ -79,18 +77,18 @@ const BottomImage = styled(Image)`
 function WelcomeSection() {
   return (
     <Wrapper>
-      <TextSection>
-        <Title>Vitae velit faucibus fusce semper auctor lectus.</Title>
-        <Tagline>
-          Gravida dui porttitor mauris convallis turpis tincidunt turpis
-          suspendisse massa.
-        </Tagline>
-        <ArrowButton to="/face" />
-      </TextSection>
       <ImageSection>
         <TopImage src={standing19} flip />
         <BottomImage src={standing18} />
       </ImageSection>
+      <TextSection>
+        <Title>Vitae velit faucibus fusce semper auctor lectus.</Title>
+        <p>
+          Gravida dui porttitor mauris convallis turpis tincidunt turpis
+          suspendisse massa.
+        </p>
+        <ArrowButton to="/face" />
+      </TextSection>
     </Wrapper>
   );
 }
