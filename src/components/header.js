@@ -4,12 +4,17 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const StyledHeader = styled.div`
-  height: 5rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
   display: grid;
   grid-template:
     "title nav cta"
     / auto 1fr auto;
+  height: 5rem;
+  background: ${props => props.theme.white};
   border-bottom: 1px solid ${props => props.theme.black};
+  z-index: 2;
 
   @media (max-width: ${props => props.theme.breakLarge}) {
     grid-template:
