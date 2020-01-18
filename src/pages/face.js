@@ -3,6 +3,9 @@ import styled from "styled-components";
 import * as faceApi from "face-api.js";
 import { useState } from "react";
 
+const BOX_LINE_COLOR = "darkcyan";
+const BOX_LINE_WIDTH = 2;
+
 const Wrapper = styled.div`
   display: grid;
 `;
@@ -53,7 +56,11 @@ function FacePage() {
     };
     faceApi.matchDimensions(canvasRef.current, displaySize);
     if (face) {
-      faceApi.draw.drawDetections(canvasRef.current, [face]);
+      new faceApi.draw.DrawBox(face.box, {
+        boxColor: BOX_LINE_COLOR,
+        lineWidth: BOX_LINE_WIDTH,
+        label: face.score.toFixed(2),
+      }).draw(canvasRef.current);
     }
   }, [face]);
 
