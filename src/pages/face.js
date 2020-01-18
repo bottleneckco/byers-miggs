@@ -52,8 +52,8 @@ function useCameraViewState() {
   // Load models
   useEffect(() => {
     async function loadFaceApiModels() {
-      await faceApi.nets.tinyFaceDetector.loadFromUri("./models");
-      await faceApi.nets.faceExpressionNet.loadFromUri("./models");
+      await faceApi.nets.tinyFaceDetector.loadFromUri("/models");
+      await faceApi.nets.faceExpressionNet.loadFromUri("/models");
       console.log("Loaded");
     }
     loadFaceApiModels();
