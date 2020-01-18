@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import * as faceApi from "face-api.js";
 import { useState } from "react";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
 
 const BOX_LINE_COLOR = "darkcyan";
 const BOX_LINE_WIDTH = 2;
@@ -113,10 +115,13 @@ function CameraView() {
 
 function FacePage() {
   return (
-    <Wrapper>
-      <h1>THE FACE PAGE</h1>
-      <CameraView />
-    </Wrapper>
+    <Layout>
+      <SEO title="Face" />
+      <Wrapper>
+        <h1>THE FACE PAGE</h1>
+        <CameraView />
+      </Wrapper>
+    </Layout>
   );
 }
 
