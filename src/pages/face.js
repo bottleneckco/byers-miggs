@@ -22,6 +22,10 @@ const Canvas = styled.canvas`
   grid-area: 1/1;
 `;
 
+function getMostLikelyExpression(obj) {
+  return Object.keys(obj).reduce((a, b) => (obj[a] > obj[b] ? a : b));
+}
+
 function useCameraViewState() {
   const [face, setFace] = useState(null);
   const [isVideoReady, setIsVideoReady] = useState(false);
@@ -47,6 +51,7 @@ function useCameraViewState() {
   useEffect(() => {
     async function loadFaceApiModels() {
       await faceApi.nets.tinyFaceDetector.loadFromUri("./models");
+      await faceApi.nets.faceExpressionNet.loadFromUri("./models");
       console.log("Loaded");
     }
     loadFaceApiModels();
@@ -60,22 +65,27 @@ function useCameraViewState() {
     };
     faceApi.matchDimensions(canvasRef.current, displaySize);
     if (face) {
-      new faceApi.draw.DrawBox(face.box, {
+      const { detection, expressions } = face;
+      new faceApi.draw.DrawBox(detection.box, {
         boxColor: BOX_LINE_COLOR,
         lineWidth: BOX_LINE_WIDTH,
-        label: face.score.toFixed(2),
+        label: `${detection.score.toFixed(2)}\n${getMostLikelyExpression(
+          expressions
+        ).toUpperCase()}`,
       }).draw(canvasRef.current);
     }
   }, [face]);
 
   async function detectFaces() {
-    const detectedFace = await faceApi.detectSingleFace(
-      videoRef.current,
-      new faceApi.TinyFaceDetectorOptions({
-        inputSize: 128,
-        scoreThreshold: 0.3,
-      })
-    );
+    const detectedFace = await faceApi
+      .detectSingleFace(
+        videoRef.current,
+        new faceApi.TinyFaceDetectorOptions({
+          inputSize: 128,
+          scoreThreshold: 0.3,
+        })
+      )
+      .withFaceExpressions();
     setFace(detectedFace);
   }
 
