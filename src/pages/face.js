@@ -65,15 +65,16 @@ function FacePage() {
 
   // Detect faces
   useEffect(() => {
+    if (!isVideoReady || !videoRef.current) {
+      return;
+    }
     function callback() {
-      if (faces && faces.length > 0) {
-        detectFaces();
-      }
+      detectFaces();
       window.requestAnimationFrame(callback);
     }
     const handle = window.requestAnimationFrame(callback);
     return () => window.cancelAnimationFrame(handle);
-  }, [isVideoReady]);
+  }, [videoRef, isVideoReady]);
 
   return (
     <Wrapper>
