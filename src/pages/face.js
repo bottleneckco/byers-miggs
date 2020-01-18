@@ -205,7 +205,7 @@ function FacePage() {
     <Layout>
       <SEO title="Face" />
       <Wrapper>
-        <Title>Sit risus urna, suspendisse.</Title>
+        <Title>Say cheese.</Title>
         <CameraView />
       </Wrapper>
     </Layout>
