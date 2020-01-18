@@ -16,7 +16,7 @@ const Canvas = styled.canvas`
 `;
 
 function FacePage() {
-  const [faces, setFaces] = useState([]);
+  const [face, setFace] = useState(null);
   const [isVideoReady, setIsVideoReady] = useState(false);
 
   const canvasRef = useRef(null);
@@ -45,25 +45,30 @@ function FacePage() {
     loadFaceApiModels();
   }, []);
 
-  // Draw faces
+  // Draw face
   useEffect(() => {
     const displaySize = {
       width: videoRef.current.videoWidth,
       height: videoRef.current.videoHeight,
     };
     faceApi.matchDimensions(canvasRef.current, displaySize);
-    faceApi.draw.drawDetections(canvasRef.current, faces);
-  }, [faces]);
+    if (face) {
+      faceApi.draw.drawDetections(canvasRef.current, [face]);
+    }
+  }, [face]);
 
   async function detectFaces() {
-    const facesArray = await faceApi.detectAllFaces(
+    const detectedFace = await faceApi.detectSingleFace(
       videoRef.current,
-      new faceApi.TinyFaceDetectorOptions()
+      new faceApi.TinyFaceDetectorOptions({
+        inputSize: 128,
+        scoreThreshold: 0.3,
+      })
     );
-    setFaces(facesArray);
+    setFace(detectedFace);
   }
 
-  // Detect faces
+  // Detect face
   useEffect(() => {
     if (!isVideoReady || !videoRef.current) {
       return;
@@ -81,7 +86,7 @@ function FacePage() {
       <h1>THE FACE PAGE</h1>
       <Video ref={videoRef} />
       <Canvas ref={canvasRef} />
-      <button onClick={detectFaces}>Fuck</button>
+      <span>{face ? "GOT PEOPLE" : "NO PEOPLE"}</span>
     </Wrapper>
   );
 }
