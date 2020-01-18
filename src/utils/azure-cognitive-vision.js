@@ -2,12 +2,13 @@ import { CognitiveServicesCredentials } from "@azure/ms-rest-azure-js";
 import { FaceClient, FaceModels } from "@azure/cognitiveservices-face";
 
 const cognitiveServiceCredentials = new CognitiveServicesCredentials(
-  process.env.AZURE_FACE_KEY
+  process.env.GATSBY_AZURE_FACE_KEY
+  // 'abcdef'
 );
 
 const client = new FaceClient(
   cognitiveServiceCredentials,
-  process.env.AZURE_FACE_ENDPOINT
+  process.env.GATSBY_AZURE_FACE_ENDPOINT
 );
 
 export default async function azureCognitiveVision(stream) {

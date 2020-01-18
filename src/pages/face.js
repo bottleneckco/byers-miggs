@@ -65,6 +65,7 @@ function useCameraViewState() {
       width: videoRef.current.videoWidth,
       height: videoRef.current.videoHeight,
     };
+
     faceApi.matchDimensions(canvasRef.current, displaySize);
     if (face) {
       const { detection, expressions } = face;
@@ -127,8 +128,17 @@ function useCameraViewState() {
   };
 }
 
+// function initStage() {
+//   const [stage] = useState(1);
+
+//   return {
+//     stage,
+//   };
+// }
+
 function CameraView() {
   const cameraViewState = useCameraViewState();
+  // const [stage, setStage] = useState("abcd");
 
   async function azure() {
     const imageData = await cameraViewState.captureImage();
