@@ -4,6 +4,8 @@ import * as faceApi from "face-api.js";
 import { useState } from "react";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import azureCognitiveVision from "../utils/azure-cognitive-vision";
+import getCanvasBlob from "../utils/get-canvas-blob";
 
 const BOX_LINE_COLOR = "darkcyan";
 const BOX_LINE_WIDTH = 2;
@@ -33,7 +35,7 @@ function useCameraViewState() {
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
 
-  // Setup HTML5 Camera
+  // Setup HTML5 Camera, runs 
   useEffect(() => {
     async function setupCamera() {
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -50,8 +52,8 @@ function useCameraViewState() {
   // Load models
   useEffect(() => {
     async function loadFaceApiModels() {
-      await faceApi.nets.tinyFaceDetector.loadFromUri("./models");
-      await faceApi.nets.faceExpressionNet.loadFromUri("./models");
+      await faceApi.nets.tinyFaceDetector.loadFromUri("/models");
+      await faceApi.nets.faceExpressionNet.loadFromUri("/models");
       console.log("Loaded");
     }
     loadFaceApiModels();
@@ -63,6 +65,7 @@ function useCameraViewState() {
       width: videoRef.current.videoWidth,
       height: videoRef.current.videoHeight,
     };
+
     faceApi.matchDimensions(canvasRef.current, displaySize);
     if (face) {
       const { detection, expressions } = face;
@@ -102,6 +105,18 @@ function useCameraViewState() {
     return () => window.cancelAnimationFrame(handle);
   }, [videoRef, isVideoReady]);
 
+  async function captureImage() {
+    const canvas = document.createElement("canvas");
+    canvas.width = videoRef.current.videoWidth;
+    canvas.height = videoRef.current.videoHeight;
+
+    canvas
+      .getContext("2d")
+      .drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
+
+    return getCanvasBlob(canvas);
+  }
+
   return {
     face,
     setFace,
@@ -109,16 +124,51 @@ function useCameraViewState() {
     setIsVideoReady,
     canvasRef,
     videoRef,
+    captureImage,
   };
 }
 
 function CameraView() {
   const cameraViewState = useCameraViewState();
+  const [fetchedAzure, setFetchedAzure] = useState(false);
+  const { face } = cameraViewState;  
+
+  async function azure() {
+    console.log("Fetching images from azure");
+    const imageData = await cameraViewState.captureImage();
+    console.log(imageData);
+    const faces = await azureCognitiveVision(imageData);
+    for (const {
+      faceId,
+      faceLandmarks,
+      faceRectangle,
+      faceAttributes,
+    } of faces) {
+      console.log(faceLandmarks);
+      console.log(faceAttributes);
+    }
+  }
+
+  // try to send to azure automatically
+  useEffect(() => {
+    // for initial fetch
+    if (!fetchedAzure && face !== null && face !== undefined) {
+      azure();
+      setFetchedAzure(true);      
+    }
+
+    // faceapi.js sets not detected faces to undefined
+    if (face === undefined) {
+      setFetchedAzure(false);
+    }
+  }, [fetchedAzure, setFetchedAzure, face])
+
   return (
     <CameraViewWrapper>
       <Video ref={cameraViewState.videoRef} />
       <Canvas ref={cameraViewState.canvasRef} />
       <span>{cameraViewState.face ? "GOT PEOPLE" : "NO PEOPLE"}</span>
+      {/* <button onClick={azure}>Send</button> */}
     </CameraViewWrapper>
   );
 }
