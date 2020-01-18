@@ -212,8 +212,15 @@ function CameraView() {
       {!cameraViewState.isVideoReady && <Spinner />}
       <Video ref={cameraViewState.videoRef} />
       <Canvas ref={cameraViewState.canvasRef} />
-      <span>{cameraViewState.face ? "GOT PEOPLE" : "NO PEOPLE"}</span>
+      <span>
+        {cameraViewState.face ? "" : "Please move into the view of the webcam"}
+      </span>
       <p>{camViewErr !== null ? camViewErr : ""}</p>
+      <p>
+        {isFetching
+          ? "Sending your image to our highly volatile mechatron to calculate your results"
+          : ""}
+      </p>
       {/* <button onClick={azure}>Send</button> */}
     </CameraViewWrapper>
   );
