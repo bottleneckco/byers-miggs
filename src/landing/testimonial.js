@@ -4,10 +4,12 @@ import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
 
 const Wrapper = styled.div`
+  display: grid;
+  grid-template-rows: 1fr auto auto;
+  align-items: center;
   max-width: 300px;
   padding: 1rem;
   border: 1px solid ${props => props.theme.black};
-  justify-self: center;
   text-align: center;
 `;
 

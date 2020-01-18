@@ -31,6 +31,7 @@ const Tagline = styled.p`
 const TestimonialList = styled.div`
   display: grid;
   grid-auto-flow: column;
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
   margin: 2rem auto;
   max-width: 90%;
