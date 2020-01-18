@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import ArrowButton from "../components/arrowButton";
+import CountUp from "react-countup";
 
 const StyledSection = styled.div`
   display: flex;
@@ -41,7 +42,9 @@ const TestimonialList = styled.div`
 function TestimonialSection({ children }) {
   return (
     <StyledSection>
-      <Counter>999,999,999</Counter>
+      <CountUp delay={0} end={999999999} separator=",">
+        {({ countUpRef }) => <Counter ref={countUpRef} />}
+      </CountUp>
       <CounterText>tests taken so far</CounterText>
       <Tagline>
         Quisque gravida eget dignissim pretium pharetra magnis in nunc.
