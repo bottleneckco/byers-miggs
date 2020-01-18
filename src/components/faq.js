@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import heroImage from "../images/standing-17.svg";
 import FaqQuestion from "./faq-question";
@@ -57,9 +58,9 @@ const FAQWrapper = styled.div`
   grid-area: faq;
 `;
 
-function FAQ() {
+function FAQ({ id }) {
   return (
-    <Wrapper>
+    <Wrapper id={id}>
       <HeroImageWrapper>
         <HeroImage src={heroImage} />
       </HeroImageWrapper>
@@ -75,13 +76,13 @@ function FAQ() {
           Aenean nec magna luctus, porttitor neque at, aliquet nulla. Mauris
           sagittis venenatis felis ultricies ultrices. Pellentesque varius
           scelerisque sapien id efficitur. Quisque in augue at dolor egestas
-          auctor. Etiam in justo et lectus efficitur ornare et sit amet
-          risus. Sed ut cursus sapien, at laoreet urna. Cras neque enim,
-          fringilla sed ultrices a, vestibulum id massa.
+          auctor. Etiam in justo et lectus efficitur ornare et sit amet risus.
+          Sed ut cursus sapien, at laoreet urna. Cras neque enim, fringilla sed
+          ultrices a, vestibulum id massa.
         </FaqQuestion>
         <FaqQuestion question="Quisque commodo pellentesque suscipit. Etiam blandit a justo id sollicitudin.">
-          Donec mattis iaculis felis quis lacinia. Donec auctor tempor eros
-          et blandit. Duis a egestas tortor. Sed tincidunt maximus maximus.
+          Donec mattis iaculis felis quis lacinia. Donec auctor tempor eros et
+          blandit. Duis a egestas tortor. Sed tincidunt maximus maximus.
           Maecenas malesuada aliquet aliquet. Nulla ut quam ipsum. Morbi
           pellentesque ex sed pretium auctor.
         </FaqQuestion>
@@ -91,32 +92,40 @@ function FAQ() {
           condimentum, blandit libero lobortis, porttitor lectus. Quisque in
           efficitur massa. Praesent risus urna, faucibus a pellentesque id,
           iaculis at augue. Fusce cursus placerat urna, vitae iaculis nisi
-          vestibulum sit amet. Praesent eget faucibus risus, id interdum
-          lacus. In pretium hendrerit sodales. Nulla facilisi. Morbi viverra
-          eros non felis aliquet tempus.
+          vestibulum sit amet. Praesent eget faucibus risus, id interdum lacus.
+          In pretium hendrerit sodales. Nulla facilisi. Morbi viverra eros non
+          felis aliquet tempus.
         </FaqQuestion>
         <FaqQuestion question="Fusce nec efficitur nulla. Aliquam aliquam odio nec quam pulvinar pharetra.">
           Ut quis euismod turpis. Morbi quam urna, ultrices ut orci vitae,
-          posuere auctor dolor. Duis sit amet euismod sem. Aliquam nibh
-          nisl, laoreet eget dui ut, tempus tempor lacus. Fusce interdum
-          tristique elit, ut imperdiet est fermentum a. Maecenas maximus
-          neque dui, at dictum sapien tempus et. Fusce semper consectetur
-          mi, in ornare nisl tincidunt nec. Suspendisse ut dictum lorem.
-          Maecenas leo felis, molestie non nulla dictum, tristique tristique
-          augue. Pellentesque lacinia at purus vel volutpat. Donec pretium
-          pharetra erat non tincidunt. Ut non sem lorem. Donec mi dolor,
-          tempus vitae venenatis quis, faucibus ut lacus.
+          posuere auctor dolor. Duis sit amet euismod sem. Aliquam nibh nisl,
+          laoreet eget dui ut, tempus tempor lacus. Fusce interdum tristique
+          elit, ut imperdiet est fermentum a. Maecenas maximus neque dui, at
+          dictum sapien tempus et. Fusce semper consectetur mi, in ornare nisl
+          tincidunt nec. Suspendisse ut dictum lorem. Maecenas leo felis,
+          molestie non nulla dictum, tristique tristique augue. Pellentesque
+          lacinia at purus vel volutpat. Donec pretium pharetra erat non
+          tincidunt. Ut non sem lorem. Donec mi dolor, tempus vitae venenatis
+          quis, faucibus ut lacus.
         </FaqQuestion>
         <FaqQuestion question="Phasellus quis pellentesque sapien.">
           Donec vitae tristique risus, ut accumsan sem. Nulla tempus nisi
-          iaculis lectus scelerisque, ac egestas neque aliquam. Maecenas
-          porta lacus at odio luctus fermentum. Integer scelerisque nisi
-          eget cursus lobortis. Nullam nec tortor tristique, placerat ante
-          eu, commodo elit. Pellentesque blandit ultricies velit eu rutrum.
+          iaculis lectus scelerisque, ac egestas neque aliquam. Maecenas porta
+          lacus at odio luctus fermentum. Integer scelerisque nisi eget cursus
+          lobortis. Nullam nec tortor tristique, placerat ante eu, commodo elit.
+          Pellentesque blandit ultricies velit eu rutrum.
         </FaqQuestion>
       </FAQWrapper>
     </Wrapper>
   );
 }
+
+FAQ.defaultProps = {
+  id: "",
+};
+
+FAQ.propTypes = {
+  id: PropTypes.string,
+};
 
 export default FAQ;
