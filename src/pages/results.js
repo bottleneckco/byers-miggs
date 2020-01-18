@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "gatsby";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import seedrandom from "seedrandom";
 
@@ -27,39 +28,27 @@ const testData = {
   //   sadness: 0.011,
   //   surprise: 0,
   // },
-  hair: { bald: 0.27, invisible: false },
+  hair: { bald: 0.27, invisible: false }, // there is another array here that has hairColor
 };
-
-// function hashCode(str) {
-//   let hash = 0,
-//     i,
-//     chr;
-//   if (str.length === 0) return hash;
-//   for (i = 0; i < str.length; i++) {
-//     chr = str.charCodeAt(i);
-//     hash = (hash << 5) - hash + chr;
-//     hash |= 0; // Convert to 32bit integer
-//   }
-//   return hash;
-// }
 
 function Results({ location }) {
   // run on default componentDidMount
   // location.state = data;
-  const [luckyNum, setLuckyNum] = setState(-1);
+  const [luckyNum, setLuckyNum] = useState(-1);
 
   useEffect(() => {
     // Remove this later
     let data = testData;
-    console.log(location);
+    // console.log(location);
     if (location.state !== null) {
       data = location.state.faceAttributes;
     }
 
-    // const data = location.state.faceAttributes || data;
     const obj = { age: data.age, gender: data.gender, hair: data.hair };
     let rng = seedrandom(JSON.stringify(obj));
-    console.log(parseInt((rng() * 1000) % 16));
+    const num = parseInt((rng() * 1000) % 16);
+    // console.log(num);
+    setLuckyNum(num);
   }, [luckyNum, setLuckyNum]);
 
   return (
@@ -67,7 +56,7 @@ function Results({ location }) {
       <SEO title="Page two" />
       <h1>Hi from the second page</h1>
       <p>Welcome to page 2</p>
-      <p></p>
+      <p>{luckyNum !== -1 ? luckyNum : ""}</p>
       <Link to="/">Go back to the homepage</Link>
     </Layout>
   );
