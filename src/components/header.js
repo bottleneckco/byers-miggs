@@ -104,7 +104,7 @@ const Header = ({ siteTitle }) => {
       </StyledTitle>
 
       <StyledNav>
-        <Link to="/page-2/">Personality Types</Link>
+        <Link to="/personality-types/">Personality Types</Link>
         <Link to="/">Testimonials</Link>
         <Link to="/faq">FAQ</Link>
       </StyledNav>
