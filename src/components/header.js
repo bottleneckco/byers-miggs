@@ -4,26 +4,11 @@ import PropTypes from "prop-types";
 import Button from './button';
 
 const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
+  <header>
+    <div>
       <h1 style={{ margin: 0 }}>
         <Link
           to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
         >
           {siteTitle}
         </Link>
@@ -38,7 +23,6 @@ const Header = ({ siteTitle }) => (
           maxWidth: 200
         }}
         linkStyle={{
-          color: 'white'
         }}
         >
       </Button>
@@ -50,7 +34,6 @@ const Header = ({ siteTitle }) => (
           maxWidth: 200
         }}
         linkStyle={{
-          color: 'white'
         }}
         >
       </Button>
@@ -62,7 +45,6 @@ const Header = ({ siteTitle }) => (
           maxWidth: 200
         }}
         linkStyle={{
-          color: 'white'
         }}
         >
       </Button>
@@ -76,7 +58,6 @@ const Header = ({ siteTitle }) => (
           maxWidth: 200
         }}
         linkStyle={{
-          color: 'white'
         }}
         >
       </Button>
