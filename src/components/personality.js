@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-rows: 5fr auto auto 1fr;
   align-items: center;
   border: 1px solid ${props => props.theme.black};
   padding: 20px;
@@ -16,15 +17,18 @@ const Image = styled.img`
 
 const Title = styled.h2`
   color: ${props => props.theme.black};
+  text-align: center;
 `;
 
 const Code = styled.span`
   color: ${props => props.theme.grey};
+  text-align: center;
 `;
 
 const Description = styled.p`
   text-align: center;
   color: ${props => props.theme.black};
+  align-self: start;
 `;
 
 function Personality(props) {
