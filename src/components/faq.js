@@ -72,12 +72,17 @@ function FAQ({ id }) {
         Questions
       </Title>
       <FAQWrapper>
-        <FaqQuestion question="Is this accurate?">
-          Definitely. We wouldn’t waste time making this site beautiful if it
-          wasn’t.
+        <FaqQuestion question="How accurate is this test?">
+          Our battle-tested deep-learning AI has been proven to be accurate
+          99.99% of the time. And it&apos;s constantly improving.
         </FaqQuestion>
-        <FaqQuestion question="Should I use this site?">
-          You already are. Might as well get through it.
+        <FaqQuestion question="Should I take the test?">
+          Well, only if you would like to unlock the secrets of your inner
+          being.
+        </FaqQuestion>
+        <FaqQuestion question="Is the test free?">
+          Yes! It&apos;s absolutely free, but if you would like to unlock your
+          full profile, you can get it the low-cost just of $2.99 a month.
         </FaqQuestion>
         <FaqQuestion question="Is this site GDPR-compliant?">
           Byers-Miggs is compliant with the 2018 European Union GDPR

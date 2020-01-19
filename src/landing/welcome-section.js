@@ -90,11 +90,13 @@ function WelcomeSection() {
         <BottomImage src={standing18} />
       </ImageSection>
       <TextSection>
-        <Title>Learn about your own personality in just one click.</Title>
+        <Title>Personality tests, simplified.</Title>
         <p>
-          Our advanced facial recognition software is trained using machine
-          learning to recognize different personalities just from facial
-          expressions alone.
+          Gone are the days of 100-question personality tests. With our
+          bleeding-edge deep-learning facial recognition AI, we have disrupted
+          the world of personality tests. Forever. With a quick facial scan,
+          we&apos;ll tell you everything you&apos;ve ever wanted to know about
+          yourself!
         </p>
         <ArrowButton to="/face" />
       </TextSection>

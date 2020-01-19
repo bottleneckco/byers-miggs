@@ -28,11 +28,6 @@ const Tagline = styled.p`
   text-align: center;
 `;
 
-const SecondaryTagline = styled(Tagline)`
-  color: ${props => props.theme.grey};
-  margin: 0;
-`;
-
 const TestimonialList = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -53,8 +48,9 @@ function TestimonialSection({ id, children }) {
         {({ countUpRef }) => <Counter ref={countUpRef} />}
       </CountUp>
       <CounterText>tests taken so far</CounterText>
-      <Tagline>Powered by LiveCounts</Tagline>
-      <SecondaryTagline>real-time updates every second</SecondaryTagline>
+      <Tagline>
+        Join the millions of others who have discovered themselves right now.
+      </Tagline>
       <TestimonialList>{children}</TestimonialList>
       <ArrowButton to="/face" />
     </StyledSection>

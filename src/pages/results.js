@@ -39,15 +39,23 @@ const StyledWrapper = styled.div`
   grid-template:
     "image text"
     / 30% auto;
-  padding-top: 5rem;
-  min-height: 100vh;
+  min-height: calc(100vh - 5rem);
 
   @media (max-width: ${props => props.theme.breakLarge}) {
-    padding-top: 8rem;
+    min-height: calc(100vh - 7.7rem);
+    margin-top: -0.3rem;
+  }
+
+  @media (max-width: ${props => props.theme.breakMedium}) {
+    margin-top: -0.4rem;
+    grid-template:
+      "image"
+      "text";
+    height: auto;
   }
 
   @media (max-width: ${props => props.theme.breakSmall}) {
-    padding-top: 11rem;
+    min-height: calc(100vh - 11rem);
   }
 `;
 
@@ -55,9 +63,32 @@ const ImageSection = styled.div`
   background: ${props => props.theme.orange};
   text-align: center;
   border-right: 1px solid ${props => props.theme.black};
+  position: relative;
+
+  @media (max-width: ${props => props.theme.breakMedium}) {
+    height: 20rem;
+  }
 `;
 
-const Image = styled.img``;
+const Person = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @media (max-width: ${props => props.theme.breakMedium}) {
+    position: relative;
+    max-height: 100%;
+  }
+`;
+
+const Image = styled.img`
+  max-width: 100%;
+
+  @media (max-width: ${props => props.theme.breakMedium}) {
+    height: 12rem;
+  }
+`;
 
 const WideHeading = styled.h1`
   margin: 0;
@@ -136,9 +167,10 @@ function Results({ location }) {
       <SEO title="Results" />
       <StyledWrapper>
         <ImageSection>
-          {/* Insert humaaan here */}
-          <Image src={getImage(image).node.publicURL} />
-          <WideHeading>{code}</WideHeading>
+          <Person>
+            <Image src={getImage(image).node.publicURL} />
+            <WideHeading>{code}</WideHeading>
+          </Person>
         </ImageSection>
         <TextSection>
           <SubHeading>Personality Type</SubHeading>
