@@ -59,10 +59,13 @@ function CameraView() {
   }, [face, isFetching, setIsFetching]);
 
   const renderWebCamMsg = () => {
-    if (cameraViewState.isVideoReady) {
+    if (camViewErr !== null) {
+      return camViewErr;
+    } else if (cameraViewState.isVideoReady && !isFetching) {
       return cameraViewState.face ? "" : "Move into the webcam view";
+    } else {
+      return "";
     }
-    return "";
   };
 
   return (
@@ -70,8 +73,8 @@ function CameraView() {
       {!cameraViewState.isVideoReady && <Spinner />}
       <Video ref={cameraViewState.videoRef} />
       <Canvas ref={cameraViewState.canvasRef} />
-      <span>{renderWebCamMsg()}</span>
-      <p>{camViewErr !== null ? camViewErr : ""}</p>
+      {/* <span>{}</span> */}
+      <p>{renderWebCamMsg()}</p>
       <p>
         {isFetching
           ? "Sending your image to our highly volatile mechatron to calculate your results"
