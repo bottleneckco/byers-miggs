@@ -80,7 +80,7 @@ function CameraView() {
     <Wrapper>
       <CameraViewWrapper>
         {!cameraViewState.isVideoReady && <Spinner />}
-        <Video ref={cameraViewState.videoRef} />
+        <Video ref={cameraViewState.videoRef} playsInline />
         <Canvas ref={cameraViewState.canvasRef} />
       </CameraViewWrapper>
       <p>{renderWebCamMsg()}</p>
