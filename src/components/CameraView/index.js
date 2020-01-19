@@ -16,7 +16,7 @@ const CameraViewWrapper = styled.div`
   display: grid;
 `;
 
-const Video = styled.video`
+const Video = styled.video.attrs(() => {playsinline: true})`
   grid-area: 1/1;
   margin: 0 auto;
 
@@ -80,7 +80,7 @@ function CameraView() {
     <Wrapper>
       <CameraViewWrapper>
         {!cameraViewState.isVideoReady && <Spinner />}
-        <Video ref={cameraViewState.videoRef} playsinline />
+        <Video ref={cameraViewState.videoRef} />
         <Canvas ref={cameraViewState.canvasRef} />
       </CameraViewWrapper>
       <p>{renderWebCamMsg()}</p>
