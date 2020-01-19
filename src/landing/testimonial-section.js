@@ -35,13 +35,14 @@ const SecondaryTagline = styled(Tagline)`
 
 const TestimonialList = styled.div`
   display: grid;
-  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1rem;
   margin: 2rem auto;
   max-width: 90%;
 
   @media (max-width: ${props => props.theme.breakMedium}) {
-    grid-auto-flow: row;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
   }
 `;
 
