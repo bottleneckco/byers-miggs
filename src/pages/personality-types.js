@@ -5,6 +5,8 @@ import breakpoint from "styled-components-breakpoint";
 import Layout from "../components/layout";
 import Personality from "../components/personality";
 import heroImage from "../images/standing-17.svg";
+import personalities from "../personalities.json";
+import { useStaticQuery, graphql } from "gatsby";
 
 const Wrapper = styled.div`
   display: flex;
@@ -36,20 +38,37 @@ const PersonalityGrid = styled.div`
 `;
 
 function PersonalityTypesPage() {
+  const { allFile } = useStaticQuery(graphql`
+    query {
+      allFile(filter: { relativeDirectory: { eq: "personalities" } }) {
+        edges {
+          node {
+            id
+            name
+            publicURL
+          }
+        }
+      }
+    }
+  `);
+
+  const getImage = name => allFile.edges.find(edge => edge.node.name === name);
+
   return (
     <Layout>
       <Wrapper>
         <Title>Personality Types</Title>
         <PersonalityGrid>
-          <Personality image={heroImage} title="Architect" code="ABCD">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Personality>
+          {personalities.map(p => (
+            <Personality
+              image={getImage(p.image).node.publicURL}
+              key={p.title}
+              title={p.title}
+              code={p.code}
+            >
+              {p.description}
+            </Personality>
+          ))}
         </PersonalityGrid>
       </Wrapper>
     </Layout>

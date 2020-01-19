@@ -1,0 +1,210 @@
+[
+  {
+    "title": "Architect",
+    "code": "HZAP",
+    "description": "Proud and confident.\nSometimes",
+    "image": "sitting-4",
+    "traits": [
+      {
+        "labelLeft": "hot",
+        "labelRight": "not",
+        "valueLeft": 0.56
+      }
+    ]
+  },
+  {
+    "title": "Librarian",
+    "code": "HZAW",
+    "description": "Erudite, may occasionally get scared by crowds.",
+    "image": "standing-24",
+    "traits": [
+      {
+        "labelLeft": "Gen-Z",
+        "labelRight": "Boomer",
+        "valueLeft": 0.38
+      }
+    ]
+  },
+  {
+    "title": "Programmer",
+    "code": "NZAP",
+    "description": "Isolated, usually introverted, able to conjure magic out of thin air.",
+    "image": "standing-19",
+    "traits": [
+      {
+        "labelLeft": "Gen-Z",
+        "labelRight": "Boomer",
+        "valueLeft": 0.38
+      }
+    ]
+  },
+  {
+    "title": "Scientist",
+    "code": "NZAW",
+    "description": "Methodical and always curious about new discoveries.",
+    "image": "standing-11",
+    "traits": [
+      {
+        "labelLeft": "Gen-Z",
+        "labelRight": "Boomer",
+        "valueLeft": 0.38
+      }
+    ]
+  },
+  {
+    "title": "Advertisers",
+    "code": "HZDP",
+    "description": "Alway gets in your face about stuff you don’t care about.",
+    "image": "standing-8",
+    "traits": [
+      {
+        "labelLeft": "Gen-Z",
+        "labelRight": "Boomer",
+        "valueLeft": 0.38
+      }
+    ]
+  },
+  {
+    "title": "Models",
+    "code": "HZDW",
+    "description": "Life is never really boring around you. Possesses a natural flair for posing for pictures.",
+    "image": "standing-12",
+    "traits": [
+      {
+        "labelLeft": "Gen-Z",
+        "labelRight": "Boomer",
+        "valueLeft": 0.38
+      }
+    ]
+  },
+  {
+    "title": "Olympian",
+    "code": "NZDP",
+    "description": "Athletic superhuman.\nNot a superhero though. Still able to hype up a crowd anytime.",
+    "image": "standing-9",
+    "traits": [
+      {
+        "labelLeft": "Gen-Z",
+        "labelRight": "Boomer",
+        "valueLeft": 0.38
+      }
+    ]
+  },
+  {
+    "title": "Engineer",
+    "code": "NZDW",
+    "description": "A very reliable individual. One who is practical and skillful. Has agile hands and mind.",
+    "image": "sitting-6",
+    "traits": [
+      {
+        "labelLeft": "Gen-Z",
+        "labelRight": "Boomer",
+        "valueLeft": 0.38
+      }
+    ]
+  },
+  {
+    "title": "Mark Zuckerberg",
+    "code": "HBAP",
+    "description": "Smart, rich but doesn’t understand the idea of personal space",
+    "image": "standing-5",
+    "traits": [
+      {
+        "labelLeft": "Gen-Z",
+        "labelRight": "Boomer",
+        "valueLeft": 0.38
+      }
+    ]
+  },
+  {
+    "title": "Scam Artist",
+    "code": "HBAW",
+    "description": "Unapproved art talents who will never give in to society.",
+    "image": "standing-9",
+    "traits": [
+      {
+        "labelLeft": "Gen-Z",
+        "labelRight": "Boomer",
+        "valueLeft": 0.38
+      }
+    ]
+  },
+  {
+    "title": "Industrialist",
+    "code": "NBAP",
+    "description": "Revolutionists of the past.",
+    "image": "standing-10",
+    "traits": [
+      {
+        "labelLeft": "Gen-Z",
+        "labelRight": "Boomer",
+        "valueLeft": 0.38
+      }
+    ]
+  },
+  {
+    "title": "Mechanic",
+    "code": "NBAW",
+    "description": "Hardworking bunch who are filled with perseverance.",
+    "image": "standing-11",
+    "traits": [
+      {
+        "labelLeft": "Gen-Z",
+        "labelRight": "Boomer",
+        "valueLeft": 0.38
+      }
+    ]
+  },
+  {
+    "title": "Foodie",
+    "code": "HBDP",
+    "description": "Explorers of taste, all they do is eat.",
+    "image": "standing-1",
+    "traits": [
+      {
+        "labelLeft": "Gen-Z",
+        "labelRight": "Boomer",
+        "valueLeft": 0.38
+      }
+    ]
+  },
+  {
+    "title": "Entrepreneur",
+    "code": "HBDW",
+    "description": "Risk-takers, dream-catchers.",
+    "image": "standing-11",
+    "traits": [
+      {
+        "labelLeft": "Gen-Z",
+        "labelRight": "Boomer",
+        "valueLeft": 0.38
+      }
+    ]
+  },
+  {
+    "title": "Interrogator",
+    "code": "NBDP",
+    "description": "Relentless and unforgiving, they’re a tough nut to crack. ",
+    "image": "standing-14",
+    "traits": [
+      {
+        "labelLeft": "Gen-Z",
+        "labelRight": "Boomer",
+        "valueLeft": 0.38
+      }
+    ]
+  },
+  {
+    "title": "Orange Buffoon",
+    "code": "NBDW",
+    "description": "Makes America great again. Also a ticking time nuke.",
+    "image": "standing-16",
+    "traits": [
+      {
+        "labelLeft": "Gen-Z",
+        "labelRight": "Boomer",
+        "valueLeft": 0.38
+      }
+    ]
+  }
+]

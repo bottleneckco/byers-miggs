@@ -20,6 +20,13 @@ module.exports = {
         path: `${__dirname}/src/images/heads`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `personalities`,
+        path: `${__dirname}/src/images/personalities`,
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
