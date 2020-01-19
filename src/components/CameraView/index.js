@@ -16,7 +16,9 @@ const CameraViewWrapper = styled.div`
   display: grid;
 `;
 
-const Video = styled.video.attrs(() => {playsinline: true})`
+const Video = styled.video.attrs(() => ({
+  playsinline: true
+}))`
   grid-area: 1/1;
   margin: 0 auto;
 
