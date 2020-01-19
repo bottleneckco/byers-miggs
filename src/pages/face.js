@@ -11,14 +11,12 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const Title = styled.h1``;
-
 function FacePage() {
   return (
     <Layout>
       <SEO title="Face" />
       <Wrapper>
-        <Title>Say cheese.</Title>
+        <h1>Smile for the face scan!</h1>
         <CameraView />
       </Wrapper>
     </Layout>

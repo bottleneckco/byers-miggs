@@ -9,10 +9,20 @@ const Wrapper = styled.div`
   grid-template:
     "text image"
     / auto 40%;
-  min-height: 100vh;
+  min-height: calc(100vh - 5rem);
+
+  @media (max-width: ${props => props.theme.breakLarge}) {
+    min-height: calc(100vh - 7.7rem);
+    margin-top: -0.3rem;
+  }
 
   @media (max-width: ${props => props.theme.breakMedium}) {
     display: block;
+    margin-top: -0.4rem;
+  }
+
+  @media (max-width: ${props => props.theme.breakSmall}) {
+    min-height: calc(100vh - 11rem);
   }
 `;
 
@@ -24,9 +34,12 @@ const TextSection = styled.div`
   align-items: flex-start;
   padding: 5rem 3rem;
 
+  @media (max-width: ${props => props.theme.breakMedium}) {
+    padding: 2rem;
+  }
+
   @media (max-width: ${props => props.theme.breakSmall}) {
     display: block;
-    padding: 2rem;
   }
 `;
 
@@ -40,12 +53,7 @@ const ImageSection = styled.div`
   grid-template:
     "image1"
     "image2";
-  padding-top: 5rem;
   background-color: #3792ff;
-
-  @media (max-width: ${props => props.theme.breakLarge}) {
-    padding-top: 8rem;
-  }
 
   @media (max-width: ${props => props.theme.breakMedium}) {
     grid-template: "image1 image2";
