@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const StyledWrapper = styled.div`
   width: 100%;
+  padding-bottom: 0.5rem;
 `;
 
 const BarContainer = styled.div`
