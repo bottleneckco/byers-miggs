@@ -1,0 +1,28 @@
+[
+  {
+    "title": "Architect",
+    "code": "ABCD",
+    "description": "Proud and confident.\nSometimes",
+    "image": "standing-5",
+    "traits": [
+      {
+        "labelLeft": "hot",
+        "labelRight": "not",
+        "valueLeft": 0.56
+      }
+    ]
+  },
+  {
+    "title": "Mia Thermopolis",
+    "code": "ABCD",
+    "description": "Intelligent human beings, not very intelligent socially.",
+    "image": "standing-4",
+    "traits": [
+      {
+        "labelLeft": "Gen-Z",
+        "labelRight": "Boomer",
+        "valueLeft": 0.38
+      }
+    ]
+  }
+]
