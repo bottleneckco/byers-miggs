@@ -120,7 +120,7 @@
     "title": "Scam Artist",
     "code": "HBAW",
     "description": "Unapproved art talents who will never give in to society.",
-    "image": "standing-9",
+    "image": "standing-7",
     "traits": [
       {
         "labelLeft": "Gen-Z",
@@ -133,7 +133,7 @@
     "title": "Industrialist",
     "code": "NBAP",
     "description": "Revolutionists of the past.",
-    "image": "standing-10",
+    "image": "standing-15",
     "traits": [
       {
         "labelLeft": "Gen-Z",
@@ -146,7 +146,7 @@
     "title": "Mechanic",
     "code": "NBAW",
     "description": "Hardworking bunch who are filled with perseverance.",
-    "image": "standing-11",
+    "image": "sitting-4",
     "traits": [
       {
         "labelLeft": "Gen-Z",
@@ -159,7 +159,7 @@
     "title": "Foodie",
     "code": "HBDP",
     "description": "Explorers of taste, all they do is eat.",
-    "image": "standing-1",
+    "image": "standing-4",
     "traits": [
       {
         "labelLeft": "Gen-Z",
@@ -172,7 +172,7 @@
     "title": "Entrepreneur",
     "code": "HBDW",
     "description": "Risk-takers, dream-catchers.",
-    "image": "standing-11",
+    "image": "standing-16",
     "traits": [
       {
         "labelLeft": "Gen-Z",
@@ -185,7 +185,7 @@
     "title": "Interrogator",
     "code": "NBDP",
     "description": "Relentless and unforgiving, they’re a tough nut to crack. ",
-    "image": "standing-14",
+    "image": "sitting-2",
     "traits": [
       {
         "labelLeft": "Gen-Z",
@@ -198,7 +198,7 @@
     "title": "Orange Buffoon",
     "code": "NBDW",
     "description": "Makes America great again. Also a ticking time nuke.",
-    "image": "standing-16",
+    "image": "sitting-3",
     "traits": [
       {
         "labelLeft": "Gen-Z",
