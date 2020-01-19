@@ -5,30 +5,28 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: grid;
   grid-auto-flow: row;
-  grid-template-rows: 5fr auto auto 1fr;
+  grid-template-rows: 12rem auto;
   align-items: center;
-  border: 1px solid ${props => props.theme.black};
   padding: 20px;
+  text-align: center;
+  border: 1px solid ${props => props.theme.black};
 `;
 
 const Image = styled.img`
   width: 100%;
+  max-height: 100%;
 `;
 
-const Title = styled.h2`
-  color: ${props => props.theme.black};
-  text-align: center;
+const Info = styled.div`
+  align-self: start;
 `;
 
 const Code = styled.span`
   color: ${props => props.theme.grey};
-  text-align: center;
 `;
 
 const Description = styled.p`
-  text-align: center;
-  color: ${props => props.theme.black};
-  align-self: start;
+  margin-bottom: 0;
 `;
 
 function Personality(props) {
@@ -37,9 +35,11 @@ function Personality(props) {
   return (
     <Wrapper>
       <Image src={image} />
-      <Title>{title}</Title>
-      <Code>{code}</Code>
-      <Description>{children}</Description>
+      <Info>
+        <h3>{title}</h3>
+        <Code>{code}</Code>
+        <Description>{children}</Description>
+      </Info>
     </Wrapper>
   );
 }

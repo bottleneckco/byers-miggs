@@ -12,16 +12,12 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-const Title = styled.h1`
-  margin: 50px 0;
-  font-size: 48px;
   text-align: center;
 `;
 
 const PersonalityGrid = styled.div`
   display: grid;
+  margin-top: 2rem;
 
   ${breakpoint("mobile")`
     grid-template-columns: 1fr;
@@ -34,7 +30,6 @@ const PersonalityGrid = styled.div`
   ${breakpoint("desktop")`
     grid-template-columns: 1fr 1fr 1fr 1fr;
   `}
-
 `;
 
 function PersonalityTypesPage() {
@@ -57,7 +52,7 @@ function PersonalityTypesPage() {
   return (
     <Layout>
       <Wrapper>
-        <Title>Personality Types</Title>
+        <h1>16 Personality Types</h1>
         <PersonalityGrid>
           {personalities.map(p => (
             <Personality
