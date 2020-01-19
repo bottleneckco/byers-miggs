@@ -6,12 +6,12 @@ import styled from "styled-components";
 const StyledHeader = styled.div`
   position: absolute;
   top: 0;
-  width: 100%;
   display: grid;
   grid-template:
     "title nav cta"
     / auto 1fr auto;
   height: 5rem;
+  width: 100%;
   background: ${props => props.theme.white};
   border-bottom: 1px solid ${props => props.theme.black};
   z-index: 2;
@@ -110,12 +110,12 @@ const Header = ({ siteTitle }) => {
 
       <StyledNav>
         <Link to="/personality-types/">Personality Types</Link>
-        <a href="#testimonial-section">Testimonials</a>
-        <a href="#faq">FAQ</a>
+        <a href="/#testimonial-section">Testimonials</a>
+        <a href="/#faq">FAQ</a>
       </StyledNav>
 
       <StyledCTA>
-        <VCenteredLink to="/">
+        <VCenteredLink to="/face">
           <h4>Take the Test</h4>
         </VCenteredLink>
       </StyledCTA>

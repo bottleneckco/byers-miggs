@@ -7,16 +7,24 @@ import azureCognitiveVision from "../../utils/azure-cognitive-vision";
 
 import useCameraViewState from "./hooks/useCameraViewState";
 
+const Wrapper = styled.div`
+  padding: 1rem;
+  text-align: center;
+`;
+
 const CameraViewWrapper = styled.div`
   display: grid;
 `;
 
 const Video = styled.video`
   grid-area: 1/1;
+  margin: 0 auto;
+
 `;
 
 const Canvas = styled.canvas`
   grid-area: 1/1;
+  margin: 0 auto;
 `;
 
 function CameraView() {
@@ -69,19 +77,19 @@ function CameraView() {
   };
 
   return (
-    <CameraViewWrapper>
-      {!cameraViewState.isVideoReady && <Spinner />}
-      <Video ref={cameraViewState.videoRef} />
-      <Canvas ref={cameraViewState.canvasRef} />
-      {/* <span>{}</span> */}
+    <Wrapper>
+      <CameraViewWrapper>
+        {!cameraViewState.isVideoReady && <Spinner />}
+        <Video ref={cameraViewState.videoRef} />
+        <Canvas ref={cameraViewState.canvasRef} />
+      </CameraViewWrapper>
       <p>{renderWebCamMsg()}</p>
       <p>
         {isFetching
           ? "Sending your image to our highly volatile mechatron to calculate your results"
           : ""}
       </p>
-      {/* <button onClick={azure}>Send</button> */}
-    </CameraViewWrapper>
+    </Wrapper>
   );
 }
 

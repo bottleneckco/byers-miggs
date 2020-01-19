@@ -36,7 +36,6 @@ const SecondaryTagline = styled(Tagline)`
 const TestimonialList = styled.div`
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
   margin: 2rem auto;
   max-width: 90%;
@@ -48,7 +47,7 @@ const TestimonialList = styled.div`
 
 function TestimonialSection({ id, children }) {
   return (
-    <StyledSection>
+    <StyledSection id={id}>
       <CountUp delay={0} end={999999999} separator=",">
         {({ countUpRef }) => <Counter ref={countUpRef} />}
       </CountUp>
