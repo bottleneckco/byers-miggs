@@ -20,7 +20,7 @@ const Bar = styled.div`
 
   span {
     display: inline-block;
-    width: 56%;
+    width: ${props => props.value}%;
     height: 100%;
     background: ${props => props.theme[props.color]};
   }
@@ -42,19 +42,23 @@ const Label = styled.h6`
   text-align: ${props => (props.right ? "right" : "left")};
 `;
 
-const Trait = () => {
+const Trait = ({ color, labelLeft, labelRight, valueLeft }) => {
   return (
     <StyledWrapper>
       <BarContainer>
-        <Percentage>56%</Percentage>
-        <Bar right color="orange">
+        <Percentage>{valueLeft}%</Percentage>
+        <Bar
+          right={valueLeft < 50}
+          color={color}
+          value={valueLeft > 50 ? valueLeft : 100 - valueLeft}
+        >
           <span></span>
         </Bar>
-        <Percentage right>44%</Percentage>
+        <Percentage right>{100 - valueLeft}%</Percentage>
       </BarContainer>
       <LabelsContainer>
-        <Label>Hot</Label>
-        <Label right>Not</Label>
+        <Label>{labelLeft}</Label>
+        <Label right>{labelRight}</Label>
       </LabelsContainer>
     </StyledWrapper>
   );
