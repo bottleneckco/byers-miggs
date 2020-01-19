@@ -30,6 +30,35 @@ const Question = styled.h4`
 const Content = styled.div`
   grid-area: content;
   margin-top: 0.5rem;
+  opacity: 0;
+  height: 0px;
+
+  @keyframes show {
+    0% {
+      opacity: 0;
+      height: 0px;
+      margin: 0;
+    }
+
+    100% {
+      opacity: 1;
+      height: auto;
+    }
+  }
+
+  @keyframes hide {
+    0% {
+      opacity: 1;
+      height: auto;
+    }
+    100% {
+      opacity: 0;
+      height: 0px;
+      margin: 0;
+    }
+  }
+
+  animation: 50ms ${props => (props.isOpen ? "show" : "hide")} forwards ease-in;
 `;
 
 const ExpandIndicator = styled.h4`
@@ -47,7 +76,7 @@ function FaqQuestion({ question, children }) {
     <StyledContainer onClick={() => setIsOpen(!isOpen)} open={isOpen}>
       <Question>{question}</Question>
       <ExpandIndicator>{isOpen ? "-" : "+"}</ExpandIndicator>
-      {isOpen && <Content>{children}</Content>}
+      <Content isOpen={isOpen}>{children}</Content>
     </StyledContainer>
   );
 }
