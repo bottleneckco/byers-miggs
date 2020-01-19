@@ -3,7 +3,7 @@
     "title": "Architect",
     "code": "HZAP",
     "description": "Proud and confident.\nSometimes",
-    "image": "standing-5",
+    "image": "sitting-4",
     "traits": [
       {
         "labelLeft": "hot",
@@ -16,7 +16,7 @@
     "title": "Librarian",
     "code": "HZAW",
     "description": "Erudite, may occasionally get scared by crowds.",
-    "image": "standing-4",
+    "image": "standing-24",
     "traits": [
       {
         "labelLeft": "Gen-Z",
@@ -29,7 +29,7 @@
     "title": "Programmer",
     "code": "NZAP",
     "description": "Isolated, usually introverted, able to conjure magic out of thin air.",
-    "image": "standing-2",
+    "image": "standing-19",
     "traits": [
       {
         "labelLeft": "Gen-Z",
@@ -42,7 +42,7 @@
     "title": "Scientist",
     "code": "NZAW",
     "description": "Methodical and always curious about new discoveries.",
-    "image": "standing-4",
+    "image": "standing-11",
     "traits": [
       {
         "labelLeft": "Gen-Z",
@@ -55,7 +55,7 @@
     "title": "Advertisers",
     "code": "HZDP",
     "description": "Alway gets in your face about stuff you don’t care about.",
-    "image": "standing-4",
+    "image": "standing-8",
     "traits": [
       {
         "labelLeft": "Gen-Z",
@@ -68,7 +68,7 @@
     "title": "Models",
     "code": "HZDW",
     "description": "Life is never really boring around you. Possesses a natural flair for posing for pictures.",
-    "image": "standing-2",
+    "image": "standing-12",
     "traits": [
       {
         "labelLeft": "Gen-Z",
@@ -81,7 +81,7 @@
     "title": "Olympian",
     "code": "NZDP",
     "description": "Athletic superhuman.\nNot a superhero though. Still able to hype up a crowd anytime.",
-    "image": "standing-4",
+    "image": "standing-9",
     "traits": [
       {
         "labelLeft": "Gen-Z",
@@ -94,7 +94,7 @@
     "title": "Engineer",
     "code": "NZDW",
     "description": "A very reliable individual. One who is practical and skillful. Has agile hands and mind.",
-    "image": "standing-5",
+    "image": "sitting-6",
     "traits": [
       {
         "labelLeft": "Gen-Z",
@@ -107,7 +107,7 @@
     "title": "Mark Zuckerberg",
     "code": "HBAP",
     "description": "Smart, rich but doesn’t understand the idea of personal space",
-    "image": "standing-10",
+    "image": "standing-5",
     "traits": [
       {
         "labelLeft": "Gen-Z",
@@ -120,7 +120,7 @@
     "title": "Scam Artist",
     "code": "HBAW",
     "description": "Unapproved art talents who will never give in to society.",
-    "image": "standing-8",
+    "image": "standing-9",
     "traits": [
       {
         "labelLeft": "Gen-Z",
@@ -133,7 +133,7 @@
     "title": "Industrialist",
     "code": "NBAP",
     "description": "Revolutionists of the past.",
-    "image": "standing-3",
+    "image": "standing-10",
     "traits": [
       {
         "labelLeft": "Gen-Z",
@@ -146,7 +146,7 @@
     "title": "Mechanic",
     "code": "NBAW",
     "description": "Hardworking bunch who are filled with perseverance.",
-    "image": "standing-9",
+    "image": "standing-11",
     "traits": [
       {
         "labelLeft": "Gen-Z",
